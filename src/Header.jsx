@@ -77,7 +77,7 @@ export default function Header() {
         { label: "Clubs @ MGM", path: "/clubs" },
         { label: "Sports", path: "/sports" },
         { label: "Events Calendar", path: "/events-calendar" },
-        { label: "MGM: What is new?", path: "/mgm-news" },
+        { label: "MGM: What is new?", path: "/WhatsNew" },
       ],
     },
   ];

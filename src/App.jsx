@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
 import Facilities from "./Facilities";
+import WhatsNew from "./WhatsNew";
+
 
 // Dummy components for demo
 function Home() {
@@ -45,10 +47,24 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
 
         {/* Faculty and Campus */}
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/facilities" element={<Facilities />} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+
 
         {/* Add more routes and dummy components as necessary */}
 
+        {/* Activities */}
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home/>} />
+        <Route path="/WhatsNew" element={<WhatsNew />} />
       </Routes>
 
       <Footer />
