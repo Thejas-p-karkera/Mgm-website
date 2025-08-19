@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Amritha_Mahothsava from './assets/Amritha_Mahothsava.jpg';
-import MGMLOGO from './assets/MGMLOGO.jpg';
+import Amritha_Mahothsava from './assets/Amritha_Mahothsava.png';
+import MGMLOGO from './assets/mgm-logo.png';
 import { FaBars, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -72,11 +72,11 @@ export default function Header() {
     {
       title: "Activities",
       dropdown: [
-        { label: "Alumni", path: "/alumni" },
-        { label: "NCC and NSS", path: "/ncc-nss" },
-        { label: "Clubs @ MGM", path: "/clubs" },
-        { label: "Sports", path: "/sports" },
-        { label: "Events Calendar", path: "/events-calendar" },
+        { label: "Alumni", path: "/Alumni-Pavan/Alumni" },
+        { label: "NCC and NSS", path: "/NccNss-Ramya/NccNss" },
+        { label: "Clubs @ MGM", path: "/Clubs-Vaibhavi/Clubs" },
+        { label: "Sports", path: "/Sports-Shilpa/Sports" },
+        { label: "Events Calendar", path: "/events" },
         { label: "MGM: What is new?", path: "/WhatsNew" },
       ],
     },
