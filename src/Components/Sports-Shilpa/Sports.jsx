@@ -1,4 +1,5 @@
-import React from "react";
+
+import React, { useState } from "react";
 import ReactDOM from "react-dom/client";
 import BackToTop from "../../BackToTop";
 
@@ -10,39 +11,87 @@ import A4 from "../../assets/Sports-Shilpa/A4.jpeg";
 import A5 from "../../assets/Sports-Shilpa/A5.jpeg";
 import A6 from "../../assets/Sports-Shilpa/A6.jpeg";
 
-// SportsPage component with all sections and TailwindCSS utility classes
+// Carousel controls SVG (inline, no external icons)
+const Arrow = ({ left }) => (
+  <svg
+    className={`w-10 h-10 text-blue-500 hover:text-blue-700 transition-colors ${
+      left ? "rotate-180" : ""
+    }`}
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+  </svg>
+);
+
+// Main component
 const SportsPage = () => {
   const images = [A1, A2, A3, A4, A5, A6];
+  const [current, setCurrent] = useState(0);
+
+  const next = () => setCurrent((prev) => (prev + 1) % images.length);
+  const prev = () => setCurrent((prev) => (prev - 1 + images.length) % images.length);
 
   return (
-    <div className="bg-gray-100 text-gray-800 font-roboto leading-relaxed min-h-screen pb-24">
+    <div className="bg-[#f9f6f6] text-gray-800 font-roboto leading-relaxed min-h-screen pb-24">
       {/* Header Section */}
-      <header className="bg-gradient-to-r from-sky-600 to-blue-700 text-white text-center px-6 py-16 rounded-b-[30px] shadow-lg">
-        <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wide mb-6">
-          <span className="mr-2">🏅</span> MGM College Sports Summary {" "}
+      <header className="bg-gradient-to-r from-sky-300 to-blue-300 text-blue-900 text-center px-6 py-16 rounded-b-[30px] shadow-lg transition-colors">
+        <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-wide mb-6 drop-shadow-lg">
+          <span className="mr-2">🏅</span> MGM College Sports Summary{" "}
           <span className="ml-2">⚽</span>
         </h1>
         <p className="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">
           MGM College supports overall student growth through a strong focus on
           physical education and sports. Large playgrounds, skilled instructors,
-          and regular training have helped students become champions over the
-          years.
+          and regular training have helped students become champions over the years.
         </p>
       </header>
 
-      {/* Sports Gallery */}
+      {/* Sports Gallery - Carousel */}
       <section
-        className="flex flex-wrap justify-center gap-6 mt-10 px-4"
+        className="flex flex-col items-center justify-center mt-10 px-4 relative "
         aria-label="Photos from MGM College Sports events"
       >
-        {images.map((src, index) => (
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            className="absolute top-1/2 -left-14 md:-left-20 transform -translate-y-1/2 bg-white bg-opacity-60 rounded-full shadow hover:scale-110 transition-transform z-10"
+            onClick={prev}
+            aria-label="Previous image"
+          >
+            <Arrow left />
+          </button>
+          {/* Image */}
           <img
-            key={index}
-            src={src}
-            alt={`MGM Sports Event ${index + 1}`}
-            className="w-[300px] h-[200px] object-cover rounded-lg shadow-md transition-transform duration-300 hover:scale-110 hover:shadow-2xl"
+            src={images[current]}
+            alt={`MGM Sports Event ${current + 1}`}
+            className="w-[340px] h-[220px] md:w-[500px] md:h-[330px] object-cover rounded-xl shadow-xl border-4 border-sky-200 transition-transform duration-500"
           />
-        ))}
+          {/* Right Arrow */}
+          <button
+            className="absolute top-1/2 -right-14 md:-right-20 transform -translate-y-1/2 bg-white bg-opacity-60 rounded-full shadow hover:scale-110 transition-transform z-10"
+            onClick={next}
+            aria-label="Next image"
+          >
+            <Arrow />
+          </button>
+        </div>
+        {/* Dots / Indicators */}
+        <div className="flex justify-center mt-4 space-x-2">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              className={`w-3 h-3 rounded-full transition-all ${
+                i === current ? "bg-blue-500 scale-125" : "bg-gray-400"
+              }`}
+              onClick={() => setCurrent(i)}
+              aria-label={`Go to image ${i + 1}`}
+            />
+          ))}
+        </div>
       </section>
 
       {/* General Rules for Sports Activities */}
@@ -167,21 +216,11 @@ const SportsPage = () => {
       </section>
 
       {/* Fixed Footer with Back to Top link */}
-      {/* <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-sky-600 to-blue-700 text-white text-center py-4 shadow-lg z-10">
-        <a
-          href="#top"
-          className="text-lg hover:underline transition-colors"
-          aria-label="Back to top link"
-        >
-          🔝 Back to Top
-        </a>
-      </footer> */}
       <BackToTop />
     </div>
   );
 };
 
-// Mount the SportsPage directly
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <SportsPage />
